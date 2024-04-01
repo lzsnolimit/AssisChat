@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F5E47E8F29B497A60083BB31"
-               BuildableName = "AssisChat.app"
+               BuildableName = "AssisChat"
                BlueprintName = "AssisChat"
                ReferencedContainer = "container:AssisChat.xcodeproj">
             </BuildableReference>
@@ -68,7 +68,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F5E47E8F29B497A60083BB31"
-            BuildableName = "AssisChat.app"
+            BuildableName = "AssisChat"
             BlueprintName = "AssisChat"
             ReferencedContainer = "container:AssisChat.xcodeproj">
          </BuildableReference>
@@ -76,6 +76,10 @@
       <StoreKitConfigurationFileReference
          identifier = "../../AssisChat/Products.storekit">
       </StoreKitConfigurationFileReference>
+      <LocationScenarioReference
+         identifier = "com.apple.dt.IDEFoundation.CurrentLocationScenarioIdentifier"
+         referenceType = "1">
+      </LocationScenarioReference>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

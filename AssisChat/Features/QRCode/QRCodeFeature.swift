@@ -32,7 +32,8 @@ class QRCodeFeature: ObservableObject {
 
     private lazy var supportedHandlers: [String:(_: Dictionary<String, String>) async -> HandlerResult] = [
         "OPENAI": handleOpenAI,
-        "ANTHROPIC": handleAnthropic
+        "ANTHROPIC": handleAnthropic,
+        "YOUQU":handleYouqu
     ]
 
     init(settingsFeature: SettingsFeature)  {
@@ -88,6 +89,20 @@ class QRCodeFeature: ObservableObject {
 
         do {
             _ = try await settingsFeature.validateAndConfigAnthropic(apiKey: apiKey, for: params["D"])
+
+            return .success(.config)
+        } catch {
+            return .error(.configFailed)
+        }
+    }
+
+    func handleYouqu(params: Dictionary<String, String>) async -> HandlerResult {
+        guard let apiKey = params["K"] else {
+            return .error(.invalidParams)
+        }
+
+        do {
+            _ = try await settingsFeature.validateAndConfigYouqu(apiKey: apiKey, for: params["D"])
 
             return .success(.config)
         } catch {

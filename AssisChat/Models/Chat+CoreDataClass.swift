@@ -108,6 +108,26 @@ extension Chat {
     }
 }
 
+extension Chat {
+    var youquModel: YouquModel {
+        YouquModel(rawValue: rawModel ?? "") ?? .default
+    }
+
+    enum YouquModel: String, CaseIterable {
+        case gpt35turbo = "gpt-3.5-turbo"
+        case gpt4 = "gpt-4-turbo"
+
+        // Copied from https://platform.openai.com/docs/models/gpt-4
+        var maxTokens: Int {
+            switch self {
+            case .gpt35turbo: return 4096
+            case .gpt4: return 128000
+            }
+        }
+        static let `default` = Self.gpt35turbo
+    }
+}
+
 // MARK: - Claude model
 extension Chat {
     var claudeModel: ClaudeModel {

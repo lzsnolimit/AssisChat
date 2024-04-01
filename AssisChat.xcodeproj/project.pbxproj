@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F0148B292BBA781500A42E49 /* YouquAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0148B282BBA781500A42E49 /* YouquAdapter.swift */; };
 		F53D790C2A00B5CB00CBFAD1 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53D790B2A00B5CB00CBFAD1 /* CloudKit.framework */; };
 		F53D790F2A03FA8200CBFAD1 /* LottieSwiftUI in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = F53D790E2A03FA8200CBFAD1 /* LottieSwiftUI */; };
 		F53D79172A062AE500CBFAD1 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53D79162A062AE500CBFAD1 /* KeyboardViewController.swift */; };
@@ -196,6 +197,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F0148B282BBA781500A42E49 /* YouquAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouquAdapter.swift; sourceTree = "<group>"; };
 		F53D790B2A00B5CB00CBFAD1 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.4.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		F53D79142A062AE500CBFAD1 /* Keyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Keyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F53D79162A062AE500CBFAD1 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
@@ -571,6 +573,7 @@
 			children = (
 				F5E47EEE29B4F5A80083BB31 /* ChatGPTAdapter.swift */,
 				F55B65B129ED0D4900F93F6D /* ClaudeAdapter.swift */,
+				F0148B282BBA781500A42E49 /* YouquAdapter.swift */,
 			);
 			path = ChattingAdapters;
 			sourceTree = "<group>";
@@ -923,6 +926,7 @@
 				F5FFE97F29FA6C6200AD4C91 /* QRCodeScanningView.swift in Sources */,
 				F58E53A129DBFC720022E979 /* MessageContent.swift in Sources */,
 				F5E47E9429B497A60083BB31 /* AssisChatApp.swift in Sources */,
+				F0148B292BBA781500A42E49 /* YouquAdapter.swift in Sources */,
 				F5E47F0D29B706FF0083BB31 /* ChatEditor.swift in Sources */,
 				F5E47EE229B49D0E0083BB31 /* Haptics.swift in Sources */,
 				F5E3D9AF2A271E2F0004736E /* KeyboardExtensionIntroduction.swift in Sources */,

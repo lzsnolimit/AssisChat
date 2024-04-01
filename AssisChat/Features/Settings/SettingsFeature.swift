@@ -30,6 +30,9 @@ class SettingsFeature: ObservableObject {
 
     @AppStorage(SharedUserDefaults.anthropicDomain, store: SharedUserDefaults.shared) private(set) var configuredAnthropicDomain: String?
     @AppStorage(SharedUserDefaults.anthropicAPIKey, store: SharedUserDefaults.shared) private(set) var configuredAnthropicAPIKey: String?
+    
+    @AppStorage(SharedUserDefaults.youquDomain, store: SharedUserDefaults.shared) private(set) var configuredYouquDomain: String?
+    @AppStorage(SharedUserDefaults.youquAPIKey, store: SharedUserDefaults.shared) private(set) var configuredYouquAPIKey: String?
 
     let essentialFeature: EssentialFeature
 
@@ -86,6 +89,7 @@ class SettingsFeature: ObservableObject {
     func initiateAdapters() {
         initiateChatGPTAdapter()
         initiateClaudeAdapter()
+        initiateYouquAdapter()
     }
 
     func initiateChatGPTAdapter() {
@@ -103,6 +107,15 @@ class SettingsFeature: ObservableObject {
         }
 
         let adapter = ClaudeAdapter(essentialFeature: essentialFeature, config: .init(domain: configuredAnthropicDomain, apiKey: apiKey))
+        chattingAdapters[adapter.identifier] = adapter
+    }
+
+    func initiateYouquAdapter() {
+        guard let apiKey = configuredYouquAPIKey, !apiKey.isEmpty else {
+            return
+        }
+
+        let adapter = YouquAdapter(essentialFeature: essentialFeature, config: .init(domain: configuredAnthropicDomain, apiKey: apiKey))
         chattingAdapters[adapter.identifier] = adapter
     }
 
@@ -128,6 +141,19 @@ class SettingsFeature: ObservableObject {
         chattingAdapters[adapter.identifier] = adapter
         configuredAnthropicAPIKey = apiKey
         configuredAnthropicDomain = domain
+
+        return adapter
+    }
+
+    @MainActor
+    func validateAndConfigYouqu(apiKey: String, for domain: String?) async throws -> ChattingAdapter {
+        let adapter = YouquAdapter(essentialFeature: essentialFeature, config: .init(domain: domain, apiKey: apiKey))
+
+        try await adapter.validateConfig()
+
+        chattingAdapters[adapter.identifier] = adapter
+        configuredYouquAPIKey = apiKey
+        configuredYouquDomain = domain
 
         return adapter
     }

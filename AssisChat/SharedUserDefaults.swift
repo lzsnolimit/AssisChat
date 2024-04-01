@@ -25,6 +25,10 @@ class SharedUserDefaults {
     // Anthropic
     static let anthropicDomain = "settings:anthropic:domain"
     static let anthropicAPIKey = "settings:anthropic:apiKey"
+    
+    // Youqu
+    static let youquDomain = "settings:youqu:domain"
+    static let youquAPIKey = "settings:youqu:apiKey"
 
     static let migrationKey = "dataMigrationComplete"
 
