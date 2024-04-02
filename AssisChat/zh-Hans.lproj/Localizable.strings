@@ -326,10 +326,10 @@
 "SETTINGS_CHAT_SOURCE_INCORRECT_HINT" = "请正确配置会话源";
 
 /* Settings chat source api key empty error message */
-"SETTINGS_CHAT_SOURCE_NO_API_KEY" = "请输入 API Key";
+"SETTINGS_CHAT_SOURCE_NO_API_KEY" = "请输入有趣API Key";
 
 /* Settings chat source OpenAI API domain */
-"SETTINGS_CHAT_SOURCE_OPENAI_DOMAIN" = "OpenAI API 域名（可选）";
+"SETTINGS_CHAT_SOURCE_OPENAI_DOMAIN" = "有趣域名（可选）";
 
 /* Settings chat source OpenAI API domain hint */
 "SETTINGS_CHAT_SOURCE_OPENAI_DOMAIN_HINT" = "使用代理域名，通常推荐留空使用默认值。请不要使用不受信任的域名，这样可能会使你的 API Key 泄露。";
@@ -338,10 +338,10 @@
 "SETTINGS_CHAT_SOURCE_OPENAI_KEY" = "OpenAI API Key";
 
 /* Settings chat source OpenAI API key hint */
-"SETTINGS_CHAT_SOURCE_OPENAI_KEY_HINT" = "从 https://platform.openai.com/account/api-keys 获取 API Key";
+"SETTINGS_CHAT_SOURCE_OPENAI_KEY_HINT" = "从 https://youqu.app 获取 API Key";
 
 /* Settings chat source summary */
-"SETTINGS_CHAT_SOURCE_OPENAI_SUMMARY" = "配置 OpenAI API";
+"SETTINGS_CHAT_SOURCE_OPENAI_SUMMARY" = "配置 youqu API";
 
 /* Settings chat source validate and save button */
 "SETTINGS_CHAT_SOURCE_VALIDATE_AND_SAVE" = "验证并保存";

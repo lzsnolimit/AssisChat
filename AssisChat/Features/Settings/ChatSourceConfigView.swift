@@ -9,8 +9,7 @@ import SwiftUI
 
 struct ChatSourceConfigView: View {
     private enum Source {
-        case chatGPT
-        case claude
+        case Youqu
     }
 
     @EnvironmentObject private var settingsFeature: SettingsFeature
@@ -19,16 +18,14 @@ struct ChatSourceConfigView: View {
     let backWhenConfigured: Bool
     let onConfigured: ((_: ChattingAdapter) -> Void)?
 
-    @State private var selectedSource: Source = .chatGPT
+    @State private var selectedSource: Source = .Youqu
 
     var body: some View {
         VStack(spacing: 0) {
             Picker(selection: $selectedSource) {
-                Text("ChatGPT")
-                    .tag(Source.chatGPT)
+                Text("Youqu")
+                    .tag(Source.Youqu)
 
-                Text("Claude")
-                    .tag(Source.claude)
             } label: {
                 EmptyView()
             }
@@ -36,32 +33,16 @@ struct ChatSourceConfigView: View {
             .padding(.horizontal)
             .padding(.vertical, 5)
 
-            if selectedSource == .chatGPT {
-                let view = OpenAIContent(
-                    openAIAPIKey: settingsFeature.configuredOpenAIAPIKey ?? "",
-                    openAIDomain: settingsFeature.configuredOpenAIDomain ?? "",
+            if selectedSource == .Youqu {
+                let view = YouquContent(
+                    youquAPIKey: settingsFeature.configuredOpenAIAPIKey ?? "",
+                    youquDomain: settingsFeature.configuredOpenAIDomain ?? "",
                     successAlert: successAlert,
                     backWhenConfigured: backWhenConfigured,
                     onConfigured: onConfigured
                 )
                 .ignoresSafeArea()
-                .tag(Source.chatGPT)
-
-                if #available(iOS 16, macOS 13, *) {
-                    view.scrollDismissesKeyboard(.immediately)
-                } else {
-                    view
-                }
-            } else if selectedSource == .claude {
-                let view = AnthropicContent(
-                    apiKey: settingsFeature.configuredAnthropicAPIKey ?? "",
-                    domain: settingsFeature.configuredAnthropicDomain ?? "",
-                    successAlert: successAlert,
-                    backWhenConfigured: backWhenConfigured,
-                    onConfigured: onConfigured
-                )
-                .ignoresSafeArea()
-                .tag(Source.claude)
+                .tag(Source.Youqu)
 
                 if #available(iOS 16, macOS 13, *) {
                     view.scrollDismissesKeyboard(.immediately)
@@ -76,14 +57,14 @@ struct ChatSourceConfigView: View {
     }
 }
 
-private struct OpenAIContent: View {
+private struct YouquContent: View {
     @Environment(\.dismiss) private var dismiss
 
     @EnvironmentObject private var settingsFeature: SettingsFeature
 
     @State var alertText: LocalizedStringKey? = nil
-    @State var openAIAPIKey: String
-    @State var openAIDomain: String
+    @State var youquAPIKey: String
+    @State var youquDomain: String
 
     @State private var validating = false
 
@@ -96,7 +77,7 @@ private struct OpenAIContent: View {
 #if os(iOS)
                 Section {
                     VStack {
-                        Image("chatgpt")
+                        Image("youqu")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 50, height: 50)
@@ -107,10 +88,10 @@ private struct OpenAIContent: View {
 
                 Section {
 #if os(iOS)
-                    SecureField(String("sk-XXXXXXX"), text: $openAIAPIKey)
+                    SecureField(String("sk-XXXXXXX"), text: $youquAPIKey)
                         .disableAutocorrection(true)
 #else
-                    SecureField("", text: $openAIAPIKey)
+                    SecureField("", text: $youquAPIKey)
                         .disableAutocorrection(true)
                         .textFieldStyle(.roundedBorder)
 #endif
@@ -122,10 +103,10 @@ private struct OpenAIContent: View {
 
                 Section {
 #if os(iOS)
-                    TextField(String("api.openai.com"), text: $openAIDomain)
+                    TextField(String("youqu.app"), text: $youquDomain)
                         .disableAutocorrection(true)
 #else
-                    TextField("", text: $openAIDomain)
+                    TextField("", text: $youuDomain)
                         .disableAutocorrection(true)
                         .textFieldStyle(.roundedBorder)
 #endif
@@ -185,17 +166,17 @@ private struct OpenAIContent: View {
 
     func validateAndSave() -> Void {
         Task {
-            if openAIAPIKey.isEmpty {
+            if youquAPIKey.isEmpty {
                 alertText = "SETTINGS_CHAT_SOURCE_NO_API_KEY"
                 return
             }
 
-            let domain = openAIDomain.isEmpty ? nil : openAIDomain
+            let domain = youquDomain.isEmpty ? nil : youquDomain
 
             do {
                 validating = true
 
-                let adapter = try await settingsFeature.validateAndConfigOpenAI(apiKey: openAIAPIKey, for: domain)
+                let adapter = try await settingsFeature.validateAndConfigOpenAI(apiKey: youquAPIKey, for: domain)
 
                 if successAlert {
                     alertText = "SETTINGS_CHAT_SOURCE_VALIDATE_AND_SAVE_SUCCESS"
